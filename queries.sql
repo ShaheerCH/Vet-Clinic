@@ -116,3 +116,17 @@ SELECT owners.full_name AS owners, animals.name AS animals FROM owners INNER JOI
 SELECT owners.full_name as Owners,animals.name as Animals FROM owners JOIN  animals ON   Owners.id = owner_id AND owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0;
 
 SELECT owners.full_name AS Owners,count(*) FROM owners JOIN  animals ON  owners.id = owner_id GROUP BY Owners ORDER BY count DESC LIMIT 1; 
+
+select name, full_name from animals JOIN owners ON owners_id = owners.id or owners_id is null;
+
+select name, full_name from animals JOIN owners ON owners_id = owners.id AND owners.full_name='Jennifer Orwell' And species_id=2;
+
+select name, full_name from animals JOIN owners ON owners_id = owners.id;
+
+UPDATE animals
+   SET species_id = (SELECT id from species WHERE name = 'Digimon')
+   WHERE name like '%mon';
+
+UPDATE animals
+   SET owner_id = (SELECT id from owners WHERE full_name = 'Sam Smith')
+   WHERE name = 'Agumon';
