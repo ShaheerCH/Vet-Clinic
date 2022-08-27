@@ -76,3 +76,43 @@ UPDATE animals set species='unspecified';
 update animals set species = 'digimon' where name like '%mon';
 
 update animals set species = 'pokemon' where not species = 'digimon';
+
+ALTER TABLE animals DROP COLUMN species;
+ALTER TABLE
+
+ALTER TABLE animals ADD COLUMN id SERIAL PRIMARY KEY;
+ALTER TABLE
+
+ALTER TABLE animals ADD species_id INTEGER;
+ALTER TABLE
+ALTER TABLE animals ADD owners_id INTEGER;
+ALTER TABLE
+alter table animals add constraint FK_species FOREIGN KEY (species_id) REFERENCES species(id);
+ALTER TABLE
+alter table animals add constraint FK_owners FOREIGN KEY (owners_id) REFERENCES owners(id);
+ALTER TABLE
+
+UPDATE ANIMALS 
+set species='unspecified';
+
+update ANIMALS
+set species = 'digimon'
+where name like '%mon';
+
+update ANIMALS
+set species = 'pokemon'
+where not species = 'digimon';
+
+SELECT name,full_name FROM animals JOIN owners ON owners_id= owners.id AND owners.full_name='Melody Pond';
+
+SELECT animals.name AS Pokemon FROM animals JOIN species ON species_id=species.id AND name='Pokemon';
+
+SELECT name, full_name FROM animals FULL OUTER JOIN owners owner_id=owners.id;
+
+SELECT species.name AS species FROM species JOIN animals ON species.id = species_id GROUP BY species;
+
+SELECT owners.full_name AS owners, animals.name AS animals FROM owners INNER JOIN species ON owners.full_name= 'Jenifer Orwell' AND species.name =' Digimon'INNER  JOIN animals ON owners.id= owners_id AND species.id= species_id;
+
+SELECT owners.full_name as Owners,animals.name as Animals FROM owners JOIN  animals ON   Owners.id = owner_id AND owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0;
+
+SELECT owners.full_name AS Owners,count(*) FROM owners JOIN  animals ON  owners.id = owner_id GROUP BY Owners ORDER BY count DESC LIMIT 1; 
